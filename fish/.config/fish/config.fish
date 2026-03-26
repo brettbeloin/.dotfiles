@@ -5,13 +5,13 @@ if status is-login
     end
 end
 
-# if test -f ~/.fishTmux.sh
-#     bash .fishTmux.sh
-# 
-#     if not set -q TMUX
-#         tmux a -t Cachy-fish
-#     end
-# end
+if test -f ~/.setup.sh
+    bash .setup.sh
+
+    if not set -q TMUX
+        tmux a
+    end
+end
 
 set fish_greeting
 
@@ -44,6 +44,6 @@ set -gx PATH $PATH $HOME/go/bin
 # pnpm
 set -gx PNPM_HOME "/home/brett/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
