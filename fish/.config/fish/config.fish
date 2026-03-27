@@ -22,7 +22,7 @@ set -gx XCURSOR_SIZE 24
 alias sysEdit='nvim ~/.config/fish/config.fish && source ~/.config/fish/config.fish'
 alias sysRead='cat ~/.config/fish/config.fish'
 alias sysOff='sudo zzz'
-alias reboot="loginctl reboot"
+alias reboot="sudo loginctl reboot"
 alias vim='nvim'
 alias gEmacs='emacsclient -c -a "nvim"'
 alias tEmacs='emacsclient -t -a "nvim"'
