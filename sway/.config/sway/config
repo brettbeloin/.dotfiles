@@ -1,2 +1,2 @@
 include ~/.config/sway/conf.d/*
-include ~/.dotfiles/sway/.config/local/*.conf
+include ~/.dotfiles/sway/.config/local/desktop.conf
