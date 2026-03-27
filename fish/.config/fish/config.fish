@@ -1,7 +1,7 @@
 # Sway autostart on TTY1
 if status is-login
     if test (tty) = /dev/tty1
-        exec sway
+        exec dbus-run-session sway
     end
 end
 
@@ -15,10 +15,14 @@ end
 
 set fish_greeting
 
+set -gx XCURSOR_THEME WinSur-dark-cursors
+set -gx XCURSOR_SIZE 24
+
 # my custom aliases
 alias sysEdit='nvim ~/.config/fish/config.fish && source ~/.config/fish/config.fish'
 alias sysRead='cat ~/.config/fish/config.fish'
 alias sysOff='sudo zzz'
+alias reboot="loginctl reboot"
 alias vim='nvim'
 alias gEmacs='emacsclient -c -a "nvim"'
 alias tEmacs='emacsclient -t -a "nvim"'

@@ -3,16 +3,18 @@
     font-family: "JetBrainsMono Nerd Font Mono", Noto Sans;
     font-size: 16px;
     padding: 2.5px 0px 2.5px 0px;
+    color: #ffffff;
 }
-
+ 
 #waybar {
-    color: #FFFFFF;
+    background-color: #000000;
+    color: #ffffff;
 }
-
+ 
 #workspaces button {
     padding: 0 5px;
 }
-
+ 
 #clock,
 #pulseaudio,
 #bluetooth,
@@ -20,5 +22,5 @@
 #tray,
 #custom {
     padding: 0 10px;
-    color: #FFFFFF;
+    color: #ffffff;
 }

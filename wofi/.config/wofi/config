@@ -1,0 +1,6 @@
+allow_images=true
+image_size=32
+# Optional: make the window centered or adjust appearance
+location=center
+width=500
+height=400
