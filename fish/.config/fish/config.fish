@@ -21,18 +21,18 @@ set -gx XCURSOR_SIZE 24
 # my custom aliases
 alias sysEdit='nvim ~/.config/fish/config.fish && source ~/.config/fish/config.fish'
 alias sysRead='cat ~/.config/fish/config.fish'
-alias sysOff='sudo zzz'
+alias sleep='sudo zzz'
+alias poweroff="sudo loginctl poweroff"
 alias reboot="sudo loginctl reboot"
 alias vim='nvim'
-alias gEmacs='emacsclient -c -a "nvim"'
-alias tEmacs='emacsclient -t -a "nvim"'
+#alias gEmacs='emacsclient -c -a "nvim"'
+#alias tEmacs='emacsclient -t -a "nvim"'
 alias df="df -h"
 alias lsblk="lsblk -lf"
 alias pkgSearch="xbps-query -Rs"
 alias search="xbps-query -S"
 alias trm="trash -v"
 alias cd="z"
-alias pacman="sudo xbps-install -S"
 
 zoxide init fish | source
 fzf --fish | source
