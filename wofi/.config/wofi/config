@@ -4,3 +4,5 @@ image_size=32
 location=center
 width=500
 height=400
+insensitive=true
+
