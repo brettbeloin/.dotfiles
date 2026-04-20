@@ -15,6 +15,10 @@ vim.pack.add({
     gh("folke/which-key.nvim"),
     gh("neanias/everforest-nvim"),
     gh("numToStr/Comment.nvim"),
+    gh("hrsh7th/nvim-cmp"),
+    gh("hrsh7th/cmp-nvim-lsp"),
+    gh("hrsh7th/cmp-buffer"),
+    gh("hrsh7th/cmp-path"),
 
     -- table imports
     {src = gh("nvim-treesitter/nvim-treesitter"), version = 'main' },
