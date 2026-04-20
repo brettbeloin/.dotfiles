@@ -39,6 +39,7 @@ fzf --fish | source
 
 set -gx XDG_SCREENSHOTS_DIR ~/Pictures/Screenshots/
 fish_add_path ~/.cargo/bin/
+fish_add_path /usr/local/go/bin
 
 # fish_add_path ~/.config/emacs/bin/
 
