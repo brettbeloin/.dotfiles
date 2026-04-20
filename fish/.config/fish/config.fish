@@ -39,13 +39,16 @@ fzf --fish | source
 
 set -gx XDG_SCREENSHOTS_DIR ~/Pictures/Screenshots/
 fish_add_path ~/.cargo/bin/
+
 # fish_add_path ~/.config/emacs/bin/
+
 fish_add_path ~/.local/bin
 set -gx NODE_PATH $HOME/.local/lib/node_modules $NODE_PATH
 set -gx npm_config_prefix $HOME/.local
 set -gx PATH $PATH $HOME/go/bin
 
 # pnpm
+set -gx MANPAGER 'nvim +Man!'
 set -gx PNPM_HOME "/home/brett/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
     set -gx PATH "$PNPM_HOME" $PATH

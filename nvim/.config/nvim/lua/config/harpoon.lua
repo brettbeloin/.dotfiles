@@ -1,0 +1,32 @@
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
+vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu, { desc = "Check harpoon list" })
+
+vim.keymap.set("n", "<leader>ea", mark.add_file, { desc = "bb/Harpoon Add File" })
+vim.keymap.set("n", "<leader>ee", ui.toggle_quick_menu, { desc = "bb/Harpoon Quick Menu" })
+
+vim.keymap.set("n", "<leader>1", function() ui.nav_file(1) end, { desc = "bb/Harpoon Go To 1" })
+vim.keymap.set("n", "<leader>2", function() ui.nav_file(2) end, { desc = "bb/Harpoon Go To 2" })
+vim.keymap.set("n", "<leader>3", function() ui.nav_file(3) end, { desc = "bb/Harpoon Go To 3" })
+vim.keymap.set("n", "<leader>4", function() ui.nav_file(4) end, { desc = "bb/Harpoon Go To 4" })
+vim.keymap.set("n", "<leader>5", function() ui.nav_file(5) end, { desc = "bb/Harpoon Go To 5" })
+vim.keymap.set("n", "<leader>6", function() ui.nav_file(6) end, { desc = "bb/Harpoon Go To 6" })
+vim.keymap.set("n", "<leader>7", function() ui.nav_file(7) end, { desc = "bb/Harpoon Go To 7" })
+vim.keymap.set("n", "<leader>8", function() ui.nav_file(8) end, { desc = "bb/Harpoon Go To 8" })
+
+vim.keymap.set("n", "<leader>ed1", function() mark.rm_file(1) end, { desc = "bb/Harpoon delete 1" })
+vim.keymap.set("n", "<leader>ed2", function() mark.rm_file(2) end, { desc = "bb/Harpoon delete 2" })
+vim.keymap.set("n", "<leader>ed3", function() mark.rm_file(3) end, { desc = "bb/Harpoon delete 3" })
+vim.keymap.set("n", "<leader>ed4", function() mark.rm_file(4) end, { desc = "bb/Harpoon delete 4" })
+vim.keymap.set("n", "<leader>ed5", function() mark.rm_file(5) end, { desc = "bb/Harpoon delete 5" })
+vim.keymap.set("n", "<leader>ed6", function() mark.rm_file(6) end, { desc = "bb/Harpoon delete 6" })
+vim.keymap.set("n", "<leader>ed7", function() mark.rm_file(7) end, { desc = "bb/Harpoon delete 7" })
+vim.keymap.set("n", "<leader>ed8", function() mark.rm_file(8) end, { desc = "bb/Harpoon delete 8" })
+vim.keymap.set("n", "<leader>edc", mark.clear_all, { desc = "bb/clear harpoon" })
+
+vim.keymap.set("n", "<C-t>", function() ui.nav_file(1) end)
+vim.keymap.set("n", "<C-g>", function() ui.nav_file(2) end)
+vim.keymap.set("n", "<C-n>", function() ui.nav_file(3) end)
+vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end)
+

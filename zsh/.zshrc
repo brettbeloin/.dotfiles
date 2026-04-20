@@ -27,6 +27,8 @@ else
 
 fi
 
+export MANPAGER='nvim +Man!'
+
 alias sysEdit='nvim ~/.zshrc && source ~/.zshrc'
 alias sysRead='cat ~/.zshrc'
 alias sleep='sudo zzz'

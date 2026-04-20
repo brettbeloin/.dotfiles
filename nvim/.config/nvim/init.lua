@@ -1,2 +1,13 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+require("config.options")
+require("config.keymaps")
+
+require("plugins.pack")
+
+-- Setup plugins after pack loads them
+vim.schedule(function()
+    require("harpoon").setup()
+    require("config.harpoon")
+    require("config.telescope")
+    require("config.treesitter")
+    require("config.lsp")
+end)
