@@ -45,5 +45,22 @@ alias trm="trash -v"
 alias cd="z"
 alias la="ls -la"
 
+export XDG_SCREENSHOTS_DIR=~/Pictures/Screenshots/
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/usr/local/go/bin:$PATH"
+# export PATH="$HOME/.config/emacs/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin/lua-language-server:$PATH"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export NODE_PATH="$HOME/.local/lib/node_modules:$NODE_PATH"
+export npm_config_prefix="$HOME/.local"
+export PATH="$PATH:$HOME/go/bin"
+# pnpm
+export PNPM_HOME="/home/brett/.local/share/pnpm"
+if [[ ":$PATH:" != *":$PNPM_HOME:"* ]]; then
+    export PATH="$PNPM_HOME:$PATH"
+fi
+# pnpm end
+
 eval "$(zoxide init zsh)"
 source <(fzf --zsh)
