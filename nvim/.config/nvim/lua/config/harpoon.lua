@@ -29,4 +29,3 @@ vim.keymap.set("n", "<C-t>", function() ui.nav_file(1) end, { desc = "bb/Harpoon
 vim.keymap.set("n", "<C-g>", function() ui.nav_file(2) end, { desc = "bb/Harpoon Go To 2" })
 vim.keymap.set("n", "<C-n>", function() ui.nav_file(3) end, { desc = "bb/Harpoon Go To 3" })
 vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end, { desc = "bb/Harpoon Go To 4" })
-

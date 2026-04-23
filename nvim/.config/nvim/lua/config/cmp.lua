@@ -1,5 +1,5 @@
 local cmp = require("cmp")
- 
+
 cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -14,4 +14,3 @@ cmp.setup({
         { name = "buffer" },
     }),
 })
- 

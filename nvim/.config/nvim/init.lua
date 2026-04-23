@@ -12,16 +12,7 @@ vim.schedule(function()
     require("config.lsp")
     require('Comment').setup(require("config.comment"))
     require("config.cmp")
+    require("config.conform")
+    require("config.lint")
+    require("config.whitespace")
 end)
-
---[[
--- software that needs to be instlled:
--- 	clang
--- 	linux-headers
--- 	base-devel
--- 	ccls
---      go install golang.org/x/tools/gopls@latest
---      golang: go to website and install
---      rustup component add rust-analyzer
---      cargo install tree-sitter-cli
---]]

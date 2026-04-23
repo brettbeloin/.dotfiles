@@ -1,13 +1,37 @@
-print("lsp")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lsp = vim.lsp
- 
-lsp.config.ccls = {
-    cmd = { "ccls" },
+
+lsp.config.lua_ls = {
+    cmd = { "lua-language-server" },
+    filetypes = { "lua" },
+    root_markers = { { '.luarc.json', '.luarc.jsonc' }, '.git' },
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+            }
+        }
+    }
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+       pattern = "cmake",
+       callback = function()
+           vim.lsp.start({
+               name = "neocmakelsp",
+               cmd = { "neocmakelsp", "stdio" },
+               root_dir = vim.fn.getcwd(),
+               capabilities = capabilities,
+           })
+       end,
+   })
+
+lsp.config.clangd = {
+    cmd = { "clangd" },
     filetypes = { "c", "cpp", "objc", "objcpp" },
     root_markers = { ".git", "compile_commands.json", "compile_flags.txt" },
 }
- 
+
 lsp.config.gopls = {
     cmd = { "gopls" },
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -21,7 +45,7 @@ lsp.config.gopls = {
         },
     },
 }
- 
+
 lsp.config.rust_analyzer = {
     cmd = { "rust-analyzer" },
     filetypes = { "rust" },
@@ -37,7 +61,19 @@ lsp.config.rust_analyzer = {
         },
     },
 }
- 
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "lua",
+    callback = function()
+        vim.lsp.start({
+            name = "lua_ls",
+            cmd = { "lua-language-server" },
+            root_dir = vim.fn.getcwd(),
+            capabilities = capabilities,
+        })
+    end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "go",
     callback = function()
@@ -45,7 +81,7 @@ vim.api.nvim_create_autocmd("FileType", {
             name = "gopls",
             cmd = { "gopls" },
             root_dir = vim.fn.getcwd(),
-	    capabilities = capabilities,
+            capabilities = capabilities,
         })
     end,
 })
@@ -54,10 +90,10 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "c", "cpp" },
     callback = function()
         vim.lsp.start({
-            name = "ccls",
-            cmd = { "ccls" },
+            name = "clangd",
+            cmd = { "clangd" },
             root_dir = vim.fn.getcwd(),
-	    capabilities = capabilities,
+            capabilities = capabilities,
         })
     end,
 })
@@ -69,15 +105,15 @@ vim.api.nvim_create_autocmd("FileType", {
             name = "rust_analyzer",
             cmd = { "rust-analyzer" },
             root_dir = vim.fn.getcwd(),
-	    capabilities = capabilities,
+            capabilities = capabilities,
         })
     end,
 })
- 
+
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local opts = { buffer = args.buf }
-        
+
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
@@ -88,7 +124,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
         vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
         vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-        
     end,
 })
 
