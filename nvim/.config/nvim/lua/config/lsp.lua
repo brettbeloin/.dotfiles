@@ -15,16 +15,16 @@ lsp.config.lua_ls = {
 }
 
 vim.api.nvim_create_autocmd("FileType", {
-       pattern = "cmake",
-       callback = function()
-           vim.lsp.start({
-               name = "neocmakelsp",
-               cmd = { "neocmakelsp", "stdio" },
-               root_dir = vim.fn.getcwd(),
-               capabilities = capabilities,
-           })
-       end,
-   })
+    pattern = "cmake",
+    callback = function()
+        vim.lsp.start({
+            name = "neocmakelsp",
+            cmd = { "neocmakelsp", "stdio" },
+            root_dir = vim.fn.getcwd(),
+            capabilities = capabilities,
+        })
+    end,
+})
 
 lsp.config.clangd = {
     cmd = { "clangd" },
@@ -91,8 +91,11 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.lsp.start({
             name = "clangd",
-            cmd = { "clangd" },
-            root_dir = vim.fn.getcwd(),
+            cmd = { "clangd",
+                "--query-driver=/usr/bin/cc",
+            },
+            -- root_dir = vim.fn.getcwd(),
+            root_dir = vim.fs.root(0, { "compile_commands.json", ".git" }),
             capabilities = capabilities,
         })
     end,

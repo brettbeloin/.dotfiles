@@ -18,6 +18,8 @@ set fish_greeting
 set -gx XCURSOR_THEME WinSur-dark-cursors
 set -gx XCURSOR_SIZE 24
 
+fastfetch
+
 # my custom aliases
 alias sysEdit='nvim ~/.config/fish/config.fish && source ~/.config/fish/config.fish'
 alias sysRead='cat ~/.config/fish/config.fish'

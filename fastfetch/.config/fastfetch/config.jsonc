@@ -24,8 +24,8 @@
     "locale",
     {
       "type": "command",
-      "text": "fortune -o",
-      "key": "Your fortune is: \n"
+      "text": "fortune | cowsay -f tux",
+      "key": "Your fortune is\n"
     }
   ]
 }

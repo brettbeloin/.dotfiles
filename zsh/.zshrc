@@ -17,6 +17,7 @@ SAVEHIST=1000
 setopt extendedglob notify
 # End of lines configured by zsh-newuser-install
 #
+
 if [[ "$PWD" == "/" ]]; then
 
     PS1=$'%c \n%n@%m %D{%a %b %d %H:%M} $ '
@@ -26,6 +27,8 @@ else
     PS1=$'%c/ \n%n@%m %D{%a %b %d %H:%M} $ '
 
 fi
+
+# fastfetch
 
 export MANPAGER='nvim +Man!'
 
