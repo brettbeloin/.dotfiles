@@ -1,10 +1,4 @@
 # Sway autostart on TTY1
-if status is-login
-    if test (tty) = /dev/tty1
-        exec dbus-run-session sway
-    end
-end
-
 if test -f ~/.setup.sh
     bash .setup.sh
 
@@ -13,12 +7,28 @@ if test -f ~/.setup.sh
     end
 end
 
+# add stuff to the path
 set fish_greeting
-
+set -gx MANPAGER 'nvim +Man!'
 set -gx XCURSOR_THEME WinSur-dark-cursors
 set -gx XCURSOR_SIZE 24
+set -gx XDG_SCREENSHOTS_DIR ~/Pictures/Screenshots/
+set -gx NODE_PATH $HOME/.local/lib/node_modules $NODE_PATH
+set -gx npm_config_prefix $HOME/.local
+set -gx PATH $PATH $HOME/go/bin
+# pnpm
+set -gx PNPM_HOME "/home/brett/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
 
-fastfetch
+
+fish_add_path ~/.cargo/bin/
+fish_add_path /usr/local/go/bin
+# fish_add_path ~/.config/emacs/bin/
+fish_add_path ~/.local/bin
+fish_add_path /home/linuxbrew/.linuxbrew/bin/lua-language-server
 
 # my custom aliases
 alias sysEdit='nvim ~/.config/fish/config.fish && source ~/.config/fish/config.fish'
@@ -26,7 +36,7 @@ alias sysRead='cat ~/.config/fish/config.fish'
 alias sleep='sudo zzz'
 alias poweroff="sudo loginctl poweroff"
 alias reboot="sudo loginctl reboot"
-alias vim='nvim'
+#alias vim='nvim'
 #alias gEmacs='emacsclient -c -a "nvim"'
 #alias tEmacs='emacsclient -t -a "nvim"'
 alias df="df -h"
@@ -39,22 +49,6 @@ alias cd="z"
 zoxide init fish | source
 fzf --fish | source
 
-set -gx XDG_SCREENSHOTS_DIR ~/Pictures/Screenshots/
-fish_add_path ~/.cargo/bin/
-fish_add_path /usr/local/go/bin
-# fish_add_path ~/.config/emacs/bin/
-fish_add_path ~/.local/bin
-fish_add_path /home/linuxbrew/.linuxbrew/bin/lua-language-server
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv fish)"
-set -gx NODE_PATH $HOME/.local/lib/node_modules $NODE_PATH
-set -gx npm_config_prefix $HOME/.local
-set -gx PATH $PATH $HOME/go/bin
-# pnpm
-set -gx PNPM_HOME "/home/brett/.local/share/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-    set -gx PATH "$PNPM_HOME" $PATH
-end
-# pnpm end
-set -gx MANPAGER 'nvim +Man!'
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv fish)"
+fastfetch
