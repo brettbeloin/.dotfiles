@@ -1,4 +1,15 @@
 # Sway autostart on TTY1
+
+if status is-login
+    if test (tty) = /dev/tty1
+        if test -f ~/.config/fish/conf.d/laptop.conf
+            exec dbus-run-session sway --unsupported-gpu
+        else
+            exec dbus-run-session sway
+        end
+    end
+end
+
 if test -f ~/.setup.sh
     bash .setup.sh
 
