@@ -37,25 +37,29 @@ end
 
 fish_add_path ~/.cargo/bin/
 fish_add_path /usr/local/go/bin
-# fish_add_path ~/.config/emacs/bin/
+fish_add_path ~/.config/emacs/bin/
 fish_add_path ~/.local/bin
 fish_add_path /home/linuxbrew/.linuxbrew/bin/lua-language-server
 
 # my custom aliases
 alias sysEdit='nvim ~/.config/fish/config.fish && source ~/.config/fish/config.fish'
 alias sysRead='cat ~/.config/fish/config.fish'
-alias sleep='sudo zzz'
 alias poweroff="sudo loginctl poweroff"
 alias reboot="sudo loginctl reboot"
-#alias vim='nvim'
-#alias gEmacs='emacsclient -c -a "nvim"'
-#alias tEmacs='emacsclient -t -a "nvim"'
+alias vim='nvim'
+alias gEmacs='emacsclient -c -a "nvim"'
+alias tEmacs='emacsclient -t -a "nvim"'
 alias df="df -h"
 alias lsblk="lsblk -lf"
 alias pkgSearch="xbps-query -Rs"
 alias search="xbps-query -S"
 alias trm="trash -v"
 alias cd="z"
+alias ..="cd .."
+alias 2b="cd ../.."
+alias 3b="cd ../../.."
+alias 4b="cd ../../../"
+alias 5b="cd ../../../../"
 
 zoxide init fish | source
 fzf --fish | source
