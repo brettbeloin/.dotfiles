@@ -28,33 +28,18 @@ else
 
 fi
 
-# fastfetch
+if [[ -z tmux ]]; then
+        tmux a
+fi
 
+# add stuff to path
 export MANPAGER='nvim +Man!'
-
-alias sysEdit='nvim ~/.zshrc && source ~/.zshrc'
-alias sysRead='cat ~/.zshrc'
-alias sleep='sudo zzz'
-alias poweroff="sudo loginctl poweroff"
-alias reboot="sudo loginctl reboot"
-alias vim='nvim'
-#alias gEmacs='emacsclient -c -a "nvim"'
-#alias tEmacs='emacsclient -t -a "nvim"'
-alias df="df -h"
-alias lsblk="lsblk -lf"
-alias pkgSearch="xbps-query -Rs"
-alias search="xbps-query -S"
-alias trm="trash -v"
-alias cd="z"
-alias la="ls -la"
-
 export XDG_SCREENSHOTS_DIR=~/Pictures/Screenshots/
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/go/bin:$PATH"
-# export PATH="$HOME/.config/emacs/bin:$PATH"
+export PATH="$HOME/.config/emacs/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/home/linuxbrew/.linuxbrew/bin/lua-language-server:$PATH"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 export NODE_PATH="$HOME/.local/lib/node_modules:$NODE_PATH"
 export npm_config_prefix="$HOME/.local"
 export PATH="$PATH:$HOME/go/bin"
@@ -65,5 +50,30 @@ if [[ ":$PATH:" != *":$PNPM_HOME:"* ]]; then
 fi
 # pnpm end
 
+# custom alias
+alias sysEdit='nvim ~/.zshrc && source ~/.zshrc'
+alias sysRead='cat ~/.zshrc'
+alias poweroff="sudo loginctl poweroff"
+alias reboot="sudo loginctl reboot"
+alias vim='nvim'
+alias gEmacs='emacsclient -c -a "nvim"'
+alias tEmacs='emacsclient -t -a "nvim"'
+alias df="df -h"
+alias lsblk="lsblk -lf"
+alias pkgSearch="xbps-query -Rs"
+alias search="xbps-query -S"
+alias trm="trash -v"
+alias cd="z"
+alias la="ls -la"
+alias ..="cd .."
+alias 2b="cd ../.."
+alias 3b="cd ../../.."
+alias 4b="cd ../../../"
+alias 5b="cd ../../../../"
+
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 source <(fzf --zsh)
+
+fastfetch
