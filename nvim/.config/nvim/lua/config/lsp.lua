@@ -9,10 +9,32 @@ lsp.config.lua_ls = {
         Lua = {
             runtime = {
                 version = 'LuaJIT',
-            }
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { 'vim' },
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
+            },
         }
     }
 }
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "lua",
+    callback = function()
+        vim.lsp.start({
+            name = "lua_ls",
+            cmd = { "lua-language-server" },
+            root_dir = vim.fn.getcwd(),
+            capabilities = capabilities,
+            settings = lua_ls_settings,
+        })
+    end,
+})
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "cmake",
@@ -32,6 +54,21 @@ lsp.config.clangd = {
     root_markers = { ".git", "compile_commands.json", "compile_flags.txt" },
 }
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "c", "cpp" },
+    callback = function()
+        vim.lsp.start({
+            name = "clangd",
+            cmd = { "clangd",
+                "--query-driver=/usr/bin/cc",
+            },
+            -- root_dir = vim.fn.getcwd(),
+            root_dir = vim.fs.root(0, { "compile_commands.json", ".git" }),
+            capabilities = capabilities,
+        })
+    end,
+})
+
 lsp.config.gopls = {
     cmd = { "gopls" },
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -45,6 +82,18 @@ lsp.config.gopls = {
         },
     },
 }
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "go",
+    callback = function()
+        vim.lsp.start({
+            name = "gopls",
+            cmd = { "gopls" },
+            root_dir = vim.fn.getcwd(),
+            capabilities = capabilities,
+        })
+    end,
+})
 
 lsp.config.rust_analyzer = {
     cmd = { "rust-analyzer" },
@@ -61,45 +110,6 @@ lsp.config.rust_analyzer = {
         },
     },
 }
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "lua",
-    callback = function()
-        vim.lsp.start({
-            name = "lua_ls",
-            cmd = { "lua-language-server" },
-            root_dir = vim.fn.getcwd(),
-            capabilities = capabilities,
-        })
-    end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "go",
-    callback = function()
-        vim.lsp.start({
-            name = "gopls",
-            cmd = { "gopls" },
-            root_dir = vim.fn.getcwd(),
-            capabilities = capabilities,
-        })
-    end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "c", "cpp" },
-    callback = function()
-        vim.lsp.start({
-            name = "clangd",
-            cmd = { "clangd",
-                "--query-driver=/usr/bin/cc",
-            },
-            -- root_dir = vim.fn.getcwd(),
-            root_dir = vim.fs.root(0, { "compile_commands.json", ".git" }),
-            capabilities = capabilities,
-        })
-    end,
-})
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "rust",
