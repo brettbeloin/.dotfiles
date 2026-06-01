@@ -10,13 +10,13 @@ if status is-login
     end
 end
 
-if test -f ~/.setup.sh
-    bash .setup.sh
-
-    if not set -q TMUX
-        tmux a
-    end
-end
+# if test -f ~/.setup.sh
+#     bash .setup.sh
+#
+#     if not set -q TMUX
+#         tmux a
+#     end
+# end
 
 # add stuff to the path
 set fish_greeting
@@ -51,19 +51,26 @@ alias gEmacs='emacsclient -c -a "nvim"'
 alias tEmacs='emacsclient -t -a "nvim"'
 alias df="df -h"
 alias lsblk="lsblk -lf"
+alias ls="ls -lAh --color=auto"
+alias mkdir="mkdir -pv"
 alias pkgSearch="xbps-query -Rs"
 alias search="xbps-query -S"
-alias trm="trash -v"
 alias cd="z"
 alias ..="cd .."
 alias 2b="cd ../.."
 alias 3b="cd ../../.."
-alias 4b="cd ../../../"
-alias 5b="cd ../../../../"
+alias 4b="cd ../../../../"
+alias 5b="cd ../../../../../"
 
 zoxide init fish | source
 fzf --fish | source
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv fish)"
 
-fastfetch
+if status --is-interactive
+    # set the terminal title to the current directory
+    function fish_title
+        echo (basename (pwd))
+    end
+    fastfetch
+end
