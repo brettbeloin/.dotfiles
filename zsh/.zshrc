@@ -64,7 +64,7 @@ alias pkgSearch="xbps-query -Rs"
 alias search="xbps-query -S"
 alias trm="trash -v"
 alias cd="z"
-alias la="ls -la"
+alias ls="ls -lAh --color=auto"
 alias ..="cd .."
 alias 2b="cd ../.."
 alias 3b="cd ../../.."
@@ -74,6 +74,10 @@ alias 5b="cd ../../../../"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
+# ~/.zshrc
+eval "$(starship init zsh)"
+
 source <(fzf --zsh)
 
-fastfetch
+printf "\e#8"
+# fastfetch
