@@ -2,7 +2,7 @@ require("lint").linters_by_ft = {
     c = { "cpplint" },
     cpp = { "cpplint" },
     go = { "golangcilint" },
-    rust = { "bacon" },
+    rust = { "clippy" },
     python = { "pylint" },
     -- java = { "checkstyle" },
 }
