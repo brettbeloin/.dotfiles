@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "top",
-  "modules-left": ["network", "bluetooth"],
+  "modules-left": ["sway/workspaces", "network", "bluetooth"],
   "modules-center": ["clock"],
   "modules-right": ["pulseaudio","tray"],
   "clock": {
@@ -34,7 +34,7 @@
   "pulseaudio": {
     "format": "{volume}%",
     "format-muted": "{volume}%",
-    "on-click": "pavucontrol",
+    "on-click": "pwvucontrol",
     "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
@@ -45,7 +45,7 @@
                 "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
                 "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
                 "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-    "on-click": "blueman-manager"
+    "on-click": "blueberry"
   },
   "tray": {
     "icon-size": 16
