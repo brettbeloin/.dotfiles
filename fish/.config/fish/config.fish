@@ -21,16 +21,16 @@ end
 # add stuff to the path
 set fish_greeting
 set -gx MANPAGER 'nvim +Man!'
-set -gx XCURSOR_THEME WinSur-dark-cursors
+#set -gx XCURSOR_THEME WinSur-dark-cursors
 set -gx XCURSOR_SIZE 24
-set -gx XDG_SCREENSHOTS_DIR ~/Pictures/Screenshots/
+#set -gx XDG_SCREENSHOTS_DIR ~/Pictures/Screenshots/
 set -gx NODE_PATH $HOME/.local/lib/node_modules $NODE_PATH
 set -gx npm_config_prefix $HOME/.local
 set -gx PATH $PATH $HOME/go/bin
 # pnpm
 set -gx PNPM_HOME "/home/brett/.local/share/pnpm"
-if not string match -q -- $PNPM_HOME $PATH
-    set -gx PATH "$PNPM_HOME" $PATH
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
 end
 # pnpm end
 
