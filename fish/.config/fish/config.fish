@@ -10,6 +10,8 @@ if status is-login
     end
 end
 
+source /usr/share/wikiman/widgets/widget.fish
+
 # if test -f ~/.setup.sh
 #     bash .setup.sh
 #
