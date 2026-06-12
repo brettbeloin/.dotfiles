@@ -13,8 +13,8 @@ vim.pack.add({
     gh("karb94/neoscroll.nvim"),
     gh("ruifm/gitlinker.nvim"),
     gh("folke/which-key.nvim"),
+    gh("folke/ts-comments.nvim"),
     gh("neanias/everforest-nvim"),
-    gh("numToStr/Comment.nvim"),
     gh("hrsh7th/nvim-cmp"),
     gh("hrsh7th/cmp-nvim-lsp"),
     gh("hrsh7th/cmp-buffer"),
@@ -23,6 +23,10 @@ vim.pack.add({
     gh("mfussenegger/nvim-lint"),
     gh('johnfrankmorgan/whitespace.nvim'),
     gh('github/copilot.vim'),
+    gh("windwp/nvim-autopairs"),
+    gh("L3MON4D3/LuaSnip"),
+    gh("saadparwaiz1/cmp_luasnip"),
+    gh("JoosepAlviste/nvim-ts-context-commentstring"),
 
     -- table imports
     { src = gh("nvim-treesitter/nvim-treesitter"), version = 'main' },

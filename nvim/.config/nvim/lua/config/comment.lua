@@ -1,50 +1,63 @@
 return {
-    ---Add a space b/w comment and the line
-    padding = true,
-
-    ---Whether the cursor should stay at its position
-    sticky = true,
-
-    ---Lines to be ignored while (un)comment
-    ignore = nil,
-
-    ---LHS of toggle mappings in NORMAL mode
-    toggler = {
-        ---Line-comment toggle keymap
-        line = '<leader>tcl',
-        ---Block-comment toggle keymap
-        block = '<leader>tcb',
-    },
-
-    ---LHS of operator-pending mappings in NORMAL and VISUAL mode
-    opleader = {
-        ---Line-comment keymap
-        line = '<leader>gc',
-        ---Block-comment keymap
-        block = '<leader>gb',
-    },
-
-    ---LHS of extra mappings
-    extra = {
-        ---Add comment on the line above
-        above = 'gcO',
-        ---Add comment on the line below
-        below = 'gco',
-        ---Add comment at the end of line
-        eol = 'gcA',
-    },
-
-    ---Enable keybindings
-    ---NOTE: If given `false` then the plugin won't create any mappings
-    mappings = {
-        ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
-        basic = true,
-        ---Extra mapping; `gco`, `gcO`, `gcA`
-        extra = true,
-    },
-
-    ---Function to call before (un)comment
-    pre_hook = nil,
-    ---Function to call after (un)comment
-    post_hook = nil,
+    {
+        lang = {
+            astro = "<!-- %s -->",
+            axaml = "<!-- %s -->",
+            blueprint = "// %s",
+            c = "// %s",
+            c_sharp = "// %s",
+            clojure = { ";; %s", "; %s" },
+            cpp = "// %s",
+            cs_project = "<!-- %s -->",
+            cue = "// %s",
+            fsharp = "// %s",
+            fsharp_project = "<!-- %s -->",
+            gleam = "// %s",
+            glimmer = "{{! %s }}",
+            graphql = "# %s",
+            handlebars = "{{! %s }}",
+            hcl = "# %s",
+            html = "<!-- %s -->",
+            hyprlang = "# %s",
+            ini = "; %s",
+            ipynb = "# %s",
+            javascript = {
+                "// %s",         -- default commentstring when no treesitter node matches
+                "/* %s */",
+                call_expression = "// %s", -- specific commentstring for call_expression
+                jsx_attribute = "// %s",
+                jsx_element = "{/* %s */}",
+                jsx_fragment = "{/* %s */}",
+                spread_element = "// %s",
+                statement_block = "// %s",
+            },
+            kdl = "// %s",
+            php = "// %s",
+            rego = "# %s",
+            rescript = "// %s",
+            rust = { "// %s", "/* %s */" },
+            sql = "-- %s",
+            styled = "/* %s */",
+            svelte = "<!-- %s -->",
+            templ = {
+                "// %s",
+                component_block = "<!-- %s -->",
+            },
+            terraform = "# %s",
+            tsx = {
+                "// %s",         -- default commentstring when no treesitter node matches
+                "/* %s */",
+                call_expression = "// %s", -- specific commentstring for call_expression
+                jsx_attribute = "// %s",
+                jsx_element = "{/* %s */}",
+                jsx_fragment = "{/* %s */}",
+                spread_element = "// %s",
+                statement_block = "// %s",
+            },
+            twig = "{# %s #}",
+            typescript = { "// %s", "/* %s */" }, -- langs can have multiple commentstrings
+            vue = "<!-- %s -->",
+            xaml = "<!-- %s -->",
+        },
+    }
 }

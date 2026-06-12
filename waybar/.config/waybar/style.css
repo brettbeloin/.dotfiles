@@ -24,3 +24,6 @@
     padding: 0 10px;
     color: #ffffff;
 }
+#custom-notification {
+  font-family: "NotoSansMono Nerd Font";
+}

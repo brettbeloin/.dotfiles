@@ -10,6 +10,7 @@ vi.opt.swapfile = false
 vi.opt.termguicolors = true
 vi.opt.shell = "/usr/bin/bash"
 vi.cmd.colorscheme("everforest")
+vim.g.copilot_enabled = false
 
 vi.diagnostic.config({
     virtual_text = true, -- Set to false to hide inline messages
