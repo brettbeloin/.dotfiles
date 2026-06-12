@@ -24,8 +24,3 @@ vim.keymap.set("n", "<leader>ed6", function() mark.rm_file(6) end, { desc = "bb/
 vim.keymap.set("n", "<leader>ed7", function() mark.rm_file(7) end, { desc = "bb/Harpoon delete 7" })
 vim.keymap.set("n", "<leader>ed8", function() mark.rm_file(8) end, { desc = "bb/Harpoon delete 8" })
 vim.keymap.set("n", "<leader>edc", mark.clear_all, { desc = "bb/clear harpoon" })
-
-vim.keymap.set("n", "<C-t>", function() ui.nav_file(1) end, { desc = "bb/Harpoon Go To 1" })
-vim.keymap.set("n", "<C-g>", function() ui.nav_file(2) end, { desc = "bb/Harpoon Go To 2" })
-vim.keymap.set("n", "<C-n>", function() ui.nav_file(3) end, { desc = "bb/Harpoon Go To 3" })
-vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end, { desc = "bb/Harpoon Go To 4" })
