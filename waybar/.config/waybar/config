@@ -3,7 +3,7 @@
   "position": "top",
   "modules-left": ["sway/workspaces", "network", "bluetooth"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio","tray"],
+  "modules-right": ["pulseaudio","tray", "custom/notification"],
   "clock": {
     "format": "{:%R}",
     "tooltip-format": "<tt><span size='9pt'>{calendar}</span></tt>",
@@ -49,5 +49,25 @@
   },
   "tray": {
     "icon-size": 16
+  },
+  "custom/notification": {
+    "tooltip": true,
+    "format": "<span size='16pt'>{icon}</span>",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
   },
 }
