@@ -53,7 +53,9 @@ alias gEmacs='emacsclient -c -a "nvim"'
 alias tEmacs='emacsclient -t -a "nvim"'
 alias df="df -h"
 alias lsblk="lsblk -lf"
-alias ls="ls -lAh --color=auto"
+alias ls="ls -lh --color=auto"
+alias la="ls -lAh --color=auto"
+alias rm="rm -r"
 alias mkdir="mkdir -pv"
 alias pkgSearch="xbps-query -Rs"
 alias search="xbps-query -S"
@@ -63,6 +65,7 @@ alias 2b="cd ../.."
 alias 3b="cd ../../.."
 alias 4b="cd ../../../../"
 alias 5b="cd ../../../../../"
+alias vcpkg="~/vcpkg/vcpkg "
 
 zoxide init fish | source
 fzf --fish | source
