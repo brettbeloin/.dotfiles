@@ -25,5 +25,6 @@
     color: #ffffff;
 }
 #custom-notification {
-  font-family: "NotoSansMono Nerd Font";
+    font-family: "NotoSansMono Nerd Font";
+    padding: 0 10px;
 }
