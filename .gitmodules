@@ -1,0 +1,3 @@
+[submodule "sddm-astronaut-theme/Documents/sddm-astronaut-theme"]
+	path = sddm-astronaut-theme/Documents/sddm-astronaut-theme
+	url = https://github.com/Keyitdev/sddm-astronaut-theme.git
