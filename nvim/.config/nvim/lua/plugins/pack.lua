@@ -27,6 +27,8 @@ vim.pack.add({
     gh("L3MON4D3/LuaSnip"),
     gh("saadparwaiz1/cmp_luasnip"),
     gh("JoosepAlviste/nvim-ts-context-commentstring"),
+    gh("williamboman/mason.nvim"),
+    gh("williamboman/mason-lspconfig.nvim"),
 
     -- table imports
     { src = gh("nvim-treesitter/nvim-treesitter"), version = 'main' },
