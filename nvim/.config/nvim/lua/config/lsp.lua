@@ -2,6 +2,18 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 local lsp = vim.lsp
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "python",
+    callback = function()
+        vim.lsp.start({
+            name = "pyright",
+            cmd = { "pyright-langserver", "--stdio" },
+            root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", ".git" }),
+            capabilities = capabilities,
+        })
+    end,
+})
+
 lsp.config.lua_ls = {
     cmd = { "lua-language-server" },
     filetypes = { "lua" },
@@ -23,6 +35,18 @@ lsp.config.lua_ls = {
         }
     }
 }
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "java",
+    callback = function()
+        vim.lsp.start({
+            name = "jdtls",
+            cmd = { "jdtls" },
+            root_dir = vim.fs.root(0, { "pom.xml", "build.gradle", ".git" }),
+            capabilities = capabilities,
+        })
+    end,
+})
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "lua",
