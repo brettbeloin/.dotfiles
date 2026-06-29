@@ -21,7 +21,7 @@
 # # separated by equals signs.
 font-family = "JetBrainsMono Nerd Font Mono"
 # window-padding-x = 2
-font-size = 18
+font-size = 14
 command = /usr/bin/fish
 #
 # # Spacing around the equals sign does not matter.
