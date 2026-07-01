@@ -29,7 +29,9 @@ vim.pack.add({
     gh("JoosepAlviste/nvim-ts-context-commentstring"),
     gh("williamboman/mason.nvim"),
     gh("williamboman/mason-lspconfig.nvim"),
-
+    gh("NeogitOrg/neogit"),
+    gh("lewis6991/gitsigns.nvim"),
+    -- gh("tpope/vim-fugitive"),
     -- table imports
     { src = gh("nvim-treesitter/nvim-treesitter"), version = 'main' },
     {

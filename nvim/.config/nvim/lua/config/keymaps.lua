@@ -15,6 +15,8 @@ vim.keymap.set('n', '<leader>sv', ':vsplit | terminal<CR>', { desc = "open virti
 vim.keymap.set('n', '<leader>sh', ':split | terminal<CR>', { desc = "open horizantal terminal" })
 vim.keymap.set('n', '<S-CR>', 'o<Esc>', { desc = "Insert line below" })
 
+vim.keymap.set('n', '<leader>ng', ':Neogit<CR>', { desc = "Enters neogit" })
+
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "copy line to system clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "copy muliple lines to system clipboard" })
 
