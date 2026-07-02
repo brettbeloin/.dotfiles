@@ -1,3 +1,6 @@
+-- Escape from terminal
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
+
 vim.api.nvim_create_autocmd({ 'BufEnter', 'TermEnter', 'TermLeave' }, {
     desc = 'cd to terminal cwd on enter',
     pattern = 'term://*',

@@ -13,9 +13,6 @@ vim.keymap.set('n', '<S-CR>', 'o<Esc>', { desc = "Insert line below" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- Escape from terminal
-vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
-
 -- clipboard options
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "copy line to system clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "copy muliple lines to system clipboard" })
