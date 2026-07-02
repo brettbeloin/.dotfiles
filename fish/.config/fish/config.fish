@@ -1,15 +1,5 @@
 # Sway autostart on TTY1
 
-# if status is-login
-#     if test (tty) = /dev/tty1
-#         if test -f ~/.config/fish/conf.d/laptop.conf
-#             exec dbus-run-session sway --unsupported-gpu
-#         else
-#             exec dbus-run-session sway
-#         end
-#     end
-# end
-
 # Extract the ID line from os-release and strip out the "ID=" text
 set -l os_id (string match -r '^ID=(.+)' < /etc/os-release)[2]
 
@@ -18,7 +8,7 @@ set os_id (string trim -c '"' $os_id)
 
 # Execute behavior based on the specific distribution
 if test "$os_id" = "cachyos"
-    echo "You are running CachyOS (Arch-based)"
+    # echo "You are running CachyOS (Arch-based)"
     # Add your pacman/paru aliases or configuration here
     source /usr/share/wikiman/widgets/widget.fish
 
@@ -30,7 +20,7 @@ if test "$os_id" = "cachyos"
     alias search="pacman -Ss"
 
 else if test "$os_id" = "fedora"
-    echo "You are running Fedora (RPM-based)"
+    # echo "You are running Fedora (RPM-based)"
     # Add your dnf aliases or configuration here
     alias poweroff="sudo systemctl poweroff"
     alias reboot="sudo systemctl reboot"
@@ -40,7 +30,6 @@ else if test "$os_id" = "fedora"
 else
     echo "You are running an unsupported OS: $os_id"
 end
-
 
 # if test -f ~/.setup.sh
 #     bash .setup.sh
