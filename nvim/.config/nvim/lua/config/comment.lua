@@ -1,3 +1,5 @@
+vim.keymap.set({ "n", "v" }, '<leader>cc', 'gcc', { desc = "comment code", remap = true })
+
 return {
     {
         lang = {
@@ -22,7 +24,7 @@ return {
             ini = "; %s",
             ipynb = "# %s",
             javascript = {
-                "// %s",         -- default commentstring when no treesitter node matches
+                "// %s",                   -- default commentstring when no treesitter node matches
                 "/* %s */",
                 call_expression = "// %s", -- specific commentstring for call_expression
                 jsx_attribute = "// %s",
@@ -45,7 +47,7 @@ return {
             },
             terraform = "# %s",
             tsx = {
-                "// %s",         -- default commentstring when no treesitter node matches
+                "// %s",                   -- default commentstring when no treesitter node matches
                 "/* %s */",
                 call_expression = "// %s", -- specific commentstring for call_expression
                 jsx_attribute = "// %s",
