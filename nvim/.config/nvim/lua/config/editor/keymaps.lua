@@ -8,6 +8,7 @@ vim.keymap.set('n', '<leader>sh', ':split | terminal<CR>', { desc = "open horiza
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Exit to file tree :Ex" })
 vim.keymap.set("n", "<leader>so", vim.cmd.so, { desc = "Source current file :so" })
 vim.keymap.set('n', '<S-CR>', 'o<Esc>', { desc = "Insert line below" })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 
 -- Movement Keys
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
