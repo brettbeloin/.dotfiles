@@ -1,3 +1,5 @@
+vim.g.copilot_enabled = false
+
 vim.keymap.set("n", "<leader>ct", function()
     if vim.g.copilot_enabled then
         vim.cmd("Copilot disable")
