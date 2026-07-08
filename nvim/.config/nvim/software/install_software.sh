@@ -19,13 +19,13 @@ echo "Detected: $DISTRO"
 echo "Installing system packages..."
 
 if [ "$DISTRO" = "arch" ] || [ "$DISTRO" = "cachyos" ]; then
-    sudo pacman -Syu
-    sudo pacman -S --noconfirm neovim git gcc clang make cmake tree-sitter npm maven
+    sudo pacman -Syyu neovim git gcc clang make cmake tree-sitter npm maven
 elif [ "$DISTRO" = "debian" ] || [ "$DISTRO" = "ubuntu" ]; then
     sudo apt update
-    sudo apt install -y neovim git gcc clang clang-format make cmake tree-sitter npm maven
+    sudo add-apt-repository ppa:neovim-ppa/unstable -y
+    sudo apt install git gcc clang clang-format make cmake tree-sitter npm maven
 elif [ "$DISTRO" = "fedora" ]; then
-    sudo dnf install -y neovim git gcc clang clang-tools-extra make cmake tree-sitter npm maven
+    sudo dnf install neovim git gcc clang clang-tools-extra make cmake tree-sitter npm maven
 else
     echo "Unsupported distribution: $DISTRO"
     exit 1
@@ -67,7 +67,6 @@ fi
 
 echo "Installing Rust tools..."
 rustup component add rust-analyzer
-cargo install bacon
 
 # Install dotnet-sdk
 echo "Installing .NET SDK..."
@@ -120,7 +119,6 @@ else
     pip install --user pyright pylint black ruff
 fi
 
-
 # Update PATH for Go and Rust
 echo ""
 echo "Installation complete!"
@@ -129,4 +127,4 @@ echo "Add these to your shell profile (~/.bashrc, ~/.zshrc, or ~/.config/fish/co
 echo "export PATH=\"\$HOME/go/bin:\$PATH\""
 echo "export PATH=\"\$HOME/.cargo/bin:\$PATH\""
 echo ""
-echo "Then restart your shell or run: source ~/.bashrc"
+echo "Then restart your shell or run: source ~/SHELL"
