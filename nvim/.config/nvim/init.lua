@@ -19,6 +19,7 @@ vim.schedule(function()
     require("config.plugins.gitsigns")
     require("config.plugins.neogit")
     require("config.plugins.copilot")
+    require("config.plugins.nvim-tree")
     -- integrations
     require("config.integrations.conform")
     require("config.integrations.lint")

@@ -31,6 +31,8 @@ vim.pack.add({
     gh("williamboman/mason-lspconfig.nvim"),
     gh("NeogitOrg/neogit"),
     gh("lewis6991/gitsigns.nvim"),
+    gh("nvim-tree/nvim-tree.lua"),
+    gh("nvim-tree/nvim-web-devicons"),
     -- gh("tpope/vim-fugitive"),
     -- table imports
     { src = gh("nvim-treesitter/nvim-treesitter"), version = 'main' },
