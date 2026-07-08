@@ -8,6 +8,7 @@ vim.schedule(function()
     -- editor
     require("config.editor.diagnostics")
     require("config.editor.terminal")
+    require("config.editor.build")
     -- plugins
     require("config.plugins.harpoon")
     require("config.plugins.telescope")
