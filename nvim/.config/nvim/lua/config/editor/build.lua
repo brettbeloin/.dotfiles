@@ -1,6 +1,6 @@
 -- build projects
 
-vim.keymap.set("n", "<leader>rb", ":vsplit | terminal cmake --build build --verbose<CR>",
+vim.keymap.set("n", "<leader>rb", ":vsplit | terminal cmake --build build<CR>",
     { desc = "Build cmake project" })
 
 vim.keymap.set("n", "<leader>rc",

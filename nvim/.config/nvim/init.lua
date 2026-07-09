@@ -20,6 +20,7 @@ vim.schedule(function()
     require("config.plugins.neogit")
     require("config.plugins.copilot")
     require("config.plugins.nvim-tree")
+    require("config.plugins.oil")
     -- integrations
     require("config.integrations.conform")
     require("config.integrations.lint")

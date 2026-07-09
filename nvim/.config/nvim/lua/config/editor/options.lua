@@ -9,6 +9,9 @@ vim.opt.softtabstop = 4
 vim.opt.swapfile = false
 vim.opt.termguicolors = true
 vim.opt.shell = "/usr/bin/bash"
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us" }
+
 
 -- Colorscheme
 vim.cmd.colorscheme("everforest")
