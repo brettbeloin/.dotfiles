@@ -2,6 +2,7 @@ require("config.editor.options")
 require("config.editor.keymaps")
 
 require("plugins.pack")
+require("config.plugins.oil")
 
 -- Setup plugins after pack loads them
 vim.schedule(function()
@@ -20,7 +21,6 @@ vim.schedule(function()
     require("config.plugins.neogit")
     require("config.plugins.copilot")
     require("config.plugins.nvim-tree")
-    require("config.plugins.oil")
     -- integrations
     require("config.integrations.conform")
     require("config.integrations.lint")
