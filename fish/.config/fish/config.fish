@@ -27,17 +27,17 @@ else if test "$os_id" = "fedora"
     alias pkgSearch="dnf info"
     alias search="dnf search --all"
 
+    if test -f ~/.config/tmux/setup/setup.sh
+        bash    ~/.config/tmux/setup/setup.sh
+
+        if not set -q TMUX
+            tmux a
+        end
+    end
+
 else
     echo "You are running an unsupported OS: $os_id"
 end
-
-# if test -f ~/.setup.sh
-#     bash .setup.sh
-#
-#     if not set -q TMUX
-#         tmux a
-#     end
-# end
 
 # add stuff to the path
 set fish_greeting
