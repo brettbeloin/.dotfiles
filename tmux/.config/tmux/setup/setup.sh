@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SESH="Arch Desktop"
+SESH="Fedora Laptop"
 
 # Check if the session already exists
 if ! tmux has-session -t "$SESH" 2>/dev/null; then

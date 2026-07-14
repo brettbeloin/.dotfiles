@@ -28,6 +28,7 @@ else if test "$os_id" = "fedora"
     alias search="dnf search --all"
 
     if test -f ~/.config/tmux/setup/setup.sh
+        bash    tmux kill-session
         bash    ~/.config/tmux/setup/setup.sh
 
         if not set -q TMUX
@@ -37,6 +38,11 @@ else if test "$os_id" = "fedora"
 
 else
     echo "You are running an unsupported OS: $os_id"
+end
+
+if set -q TMUX
+    set -gx WAYLAND_DISPLAY (tmux show-environment WAYLAND_DISPLAY | string replace 'WAYLAND_DISPLAY=' '')
+    set -gx XDG_RUNTIME_DIR (tmux show-environment XDG_RUNTIME_DIR | string replace 'XDG_RUNTIME_DIR=' '')
 end
 
 # add stuff to the path
