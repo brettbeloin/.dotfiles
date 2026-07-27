@@ -34,6 +34,9 @@ vim.pack.add({
     gh("nvim-tree/nvim-tree.lua"),
     gh("nvim-tree/nvim-web-devicons"),
     gh("stevearc/oil.nvim"),
+    gh("kevinhwang91/nvim-ufo"),
+    gh("kevinhwang91/promise-async"),
+
     -- gh("tpope/vim-fugitive"),
     -- table imports
     { src = gh("nvim-treesitter/nvim-treesitter"), version = 'main' },

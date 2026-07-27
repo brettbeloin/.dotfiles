@@ -10,6 +10,7 @@ vim.schedule(function()
     require("config.editor.diagnostics")
     require("config.editor.terminal")
     require("config.editor.build")
+    require("config.editor.fold")
     -- plugins
     require("config.plugins.harpoon")
     require("config.plugins.telescope")

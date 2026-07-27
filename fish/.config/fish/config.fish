@@ -14,16 +14,12 @@ if test "$os_id" = "cachyos"
 
     set -gx XCURSOR_SIZE 24
 
-    alias poweroff="sudo loginctl poweroff"
-    alias reboot="sudo loginctl reboot"
     alias pkgSearch="pacman -Qi"
     alias search="pacman -Ss"
 
 else if test "$os_id" = "fedora"
     # echo "You are running Fedora (RPM-based)"
     # Add your dnf aliases or configuration here
-    alias poweroff="sudo systemctl poweroff"
-    alias reboot="sudo systemctl reboot"
     alias pkgSearch="dnf info"
     alias search="dnf search --all"
 
@@ -72,6 +68,8 @@ alias vim='nvim'
 alias gEmacs='emacsclient -c -a "nvim"'
 alias tEmacs='emacsclient -t -a "nvim"'
 alias df="df -h"
+alias poweroff="sudo systemctl poweroff"
+alias reboot="sudo systemctl reboot"
 alias lsblk="lsblk -lf"
 alias ls="ls -lh --color=auto"
 alias la="ls -lAh --color=auto"
@@ -97,3 +95,5 @@ if status --is-interactive
     end
     fastfetch
 end
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/brett/.ghcup/bin $PATH # ghcup-env

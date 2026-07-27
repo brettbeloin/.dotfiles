@@ -1,7 +1,7 @@
 -- build projects
 
 vim.keymap.set("n", "<leader>rb", ":vsplit | terminal cmake --build build<CR>",
-    { desc = "Build cmake project" })
+    { desc = "build cmake project" })
 
 vim.keymap.set("n", "<leader>rc",
     ":vsplit | terminal rm -rf build/ && cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON && cmake --build build<CR>",
