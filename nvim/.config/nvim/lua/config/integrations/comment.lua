@@ -1,4 +1,5 @@
-vim.keymap.set({ "n", "v" }, '<leader>cc', 'gcc', { desc = "comment code", remap = true })
+vim.keymap.set('n', '<leader>cc', 'gcc', { desc = "comment line", remap = true })
+vim.keymap.set('v', '<leader>cc', 'gc', { desc = "comment selection", remap = true })
 
 return {
     {
