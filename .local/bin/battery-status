@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+BAT_PATH="/sys/class/power_supply/BAT0"
+
+capacity=$(cat "$BAT_PATH/capacity")
+status=$(cat "$BAT_PATH/status")
+
+case $status in
+    Charging)    icon="🔌" ;;
+    Discharging) icon="🔋" ;;
+    Full)        icon="⚡" ;;
+    *)           icon="❓" ;;
+esac
+
+echo "$icon Battery: ${capacity}% ($status)" | wofi --dmenu --prompt "Battery"
