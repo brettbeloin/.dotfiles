@@ -23,15 +23,15 @@ else if test "$os_id" = "fedora"
     alias pkgSearch="dnf info"
     alias search="dnf search --all"
 
-    if test -f ~/.config/tmux/setup/setup.sh
-        bash    tmux kill-session
-        bash    ~/.config/tmux/setup/setup.sh
-
-        if not set -q TMUX
-            tmux a
-        end
-    end
-
+    # if test -f ~/.config/tmux/setup/setup.sh
+    #     bash    tmux kill-session
+    #     bash    ~/.config/tmux/setup/setup.sh
+    #
+    #     if not set -q TMUX
+    #         tmux a
+    #     end
+    # end
+    
 else
     echo "You are running an unsupported OS: $os_id"
 end
