@@ -36,6 +36,9 @@ vim.pack.add({
     gh("stevearc/oil.nvim"),
     gh("kevinhwang91/nvim-ufo"),
     gh("kevinhwang91/promise-async"),
+    gh("mfussenegger/nvim-dap"),
+    gh("rcarriga/nvim-dap-ui"),
+    gh("nvim-neotest/nvim-nio"),
 
     -- gh("tpope/vim-fugitive"),
     -- table imports
