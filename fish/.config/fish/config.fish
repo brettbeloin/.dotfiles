@@ -14,8 +14,8 @@ if test "$os_id" = "cachyos"
 
     set -gx XCURSOR_SIZE 24
 
-    alias pkgSearch="pacman -Qi"
-    alias search="pacman -Ss"
+    alias pkgSearch="yay -Qi"
+    alias search="yay -Ss"
 
 else if test "$os_id" = "fedora"
     # echo "You are running Fedora (RPM-based)"
