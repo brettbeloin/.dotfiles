@@ -6,6 +6,7 @@ image/webp=org.kde.gwenview.desktop
 image/bmp=org.kde.gwenview.desktop
 image/vnd.microsoft.icon=org.kde.gwenview.desktop
 text/html=brave-browser.desktop
+
 x-scheme-handler/http=brave-browser.desktop
 x-scheme-handler/https=brave-browser.desktop
 x-scheme-handler/about=brave-browser.desktop

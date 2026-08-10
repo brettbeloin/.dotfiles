@@ -44,6 +44,25 @@ dap.configurations.cpp = {
 }
 dap.configurations.c = dap.configurations.cpp
 
+dap.adapters.sharpdbg = {
+    type = "executable",
+    command = "sharpdbg",
+    args = { "--interpreter=vscode" },
+}
+
+dap.configurations.cs = {
+    {
+        type = "sharpdbg",
+        name = "Launch",
+        request = "launch",
+        program = function()
+            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopAtEntry = false,
+    },
+}
+
 dapui.setup()
 
 dap.listeners.after.event_initialized["dapui_config"] = function()

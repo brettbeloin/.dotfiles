@@ -17,11 +17,13 @@ if test "$os_id" = "cachyos"
     alias pkgSearch="yay -Qi"
     alias search="yay -Ss"
 
-else if test "$os_id" = "fedora"
+else if test "$os_id" = "arch"
     # echo "You are running Fedora (RPM-based)"
     # Add your dnf aliases or configuration here
-    alias pkgSearch="dnf info"
-    alias search="dnf search --all"
+    alias pkgSearch="pacman -Qi"
+    alias search="pacman -Ss"
+
+    alias debian="distrobox enter debian"
 
     # if test -f ~/.config/tmux/setup/setup.sh
     #     bash    tmux kill-session

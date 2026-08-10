@@ -148,6 +148,51 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "cs",
+    callback = function()
+        vim.lsp.start({
+            name = "csharp_ls",
+            cmd = { "csharp-ls" },
+            root_dir = vim.fs.root(0, function(name)
+                return name:match("%.sln$") ~= nil or name:match("%.csproj$") ~= nil
+            end) or vim.fs.root(0, ".git"),
+            capabilities = capabilities,
+        })
+    end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "*",
+    callback = function(args)
+        if vim.bo[args.buf].buftype ~= "" then return end
+        local root = vim.fs.root(0, ".git")
+        if not root then return end
+        vim.lsp.start({
+            name = "semgrep",
+            cmd = { "semgrep", "lsp" },
+            root_dir = root,
+            capabilities = capabilities,
+            -- semgrep's LSP crashes on init unless `scan` is a populated object
+            init_options = {
+                scan = {
+                    configuration = { "auto" },
+                    exclude = {},
+                    include = {},
+                    jobs = 1,
+                    maxMemory = 0,
+                    maxTargetBytes = 0,
+                    onlyGitDirty = false,
+                    pro_intrafile = false,
+                    ci = false,
+                },
+                trace = { server = "off" },
+                metrics = { enabled = false },
+            },
+        })
+    end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local opts = { buffer = args.buf }

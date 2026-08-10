@@ -5,6 +5,7 @@ require("conform").setup({
         go = { "goimports" },
         python = { "blue" },
         java = { "clang_format" },
+        cs = { "csharpier" },
     },
     format_on_save = {
         timeout_ms = 500,
