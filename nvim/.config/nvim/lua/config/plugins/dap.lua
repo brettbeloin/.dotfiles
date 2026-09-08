@@ -11,14 +11,69 @@ dap.adapters.gdb = {
 -- adapter name ("cppdbg") resolve to our native gdb DAP adapter
 dap.adapters.cppdbg = dap.adapters.gdb
 
-local function find_build_executable()
-    local build_dir = "build"
-    local handle = io.popen("find " .. build_dir .. " -maxdepth 1 -type f -executable 2>/dev/null")
-    if not handle then return nil end
+local function find_in_dir(dir, depth)
+    local handle = io.popen("find " .. vim.fn.shellescape(dir) .. " -maxdepth " .. depth .. " -type f -executable 2>/dev/null")
+    if not handle then return {} end
 
-    local executable = handle:lines()()
+    local results = {}
+    for line in handle:lines() do
+        table.insert(results, line)
+    end
     handle:close()
-    return executable
+    return results
+end
+
+-- Looks for a build executable in common cmake output dirs first, then
+-- falls back to plain g++/make-style output sitting in the project root
+-- (e.g. `g++ main.cpp -o app`), so non-cmake projects work too.
+local function find_build_executables()
+    local cmake_dirs = { "build", "cmake-build-debug", "cmake-build-release" }
+    for _, dir in ipairs(cmake_dirs) do
+        if vim.fn.isdirectory(dir) == 1 then
+            local found = find_in_dir(dir, 2)
+            if #found > 0 then return found end
+        end
+    end
+    return find_in_dir(".", 1)
+end
+
+-- GDB silently rejects breakpoints (and the session looks like it just
+-- dies) when the binary has no DWARF debug info, e.g. compiled without -g.
+local function warn_if_missing_debug_info(path)
+    local handle = io.popen("readelf -S " .. vim.fn.shellescape(path) .. " 2>/dev/null")
+    if not handle then return end
+    local output = handle:read("*a")
+    handle:close()
+    if output and not output:find("debug_info") then
+        vim.notify(
+            "dap: '" .. path .. "' has no debug info (compile with -g) - breakpoints will be rejected",
+            vim.log.levels.WARN
+        )
+    end
+end
+
+local function pick_executable()
+    local candidates = find_build_executables()
+    local path
+    if #candidates == 0 then
+        path = vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    elseif #candidates == 1 then
+        path = candidates[1]
+    else
+        local co = coroutine.running()
+        -- schedule_wrap matters: the default vim.ui.select (no picker
+        -- plugin) resolves synchronously via vim.fn.inputlist, which would
+        -- resume `co` before it has yielded below and leave it suspended
+        -- forever with nothing to wake it back up.
+        vim.ui.select(candidates, { prompt = "Select executable to debug:" }, vim.schedule_wrap(function(choice)
+            coroutine.resume(co, choice)
+        end))
+        path = coroutine.yield()
+    end
+    if path and path ~= "" then
+        warn_if_missing_debug_info(path)
+    end
+    return path
 end
 
 dap.configurations.cpp = {
@@ -26,9 +81,7 @@ dap.configurations.cpp = {
         name = "Launch",
         type = "gdb",
         request = "launch",
-        program = function()
-            return find_build_executable() or vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/build/", "file")
-        end,
+        program = pick_executable,
         cwd = "${workspaceFolder}",
         stopAtBeginningOfMainSubprogram = false,
     },
@@ -68,12 +121,10 @@ dapui.setup()
 dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
 end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close()
-end
+-- Deliberately not auto-closing dapui on terminated/exited: if the program
+-- runs with no breakpoints set, it exits almost instantly and closing the
+-- UI immediately makes it look like debugging silently did nothing. Close
+-- manually with <leader>du once you've seen the output/state.
 
 vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DapStopped", { text = "▶", texthl = "DiagnosticSignWarn" })
