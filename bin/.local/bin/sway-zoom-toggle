@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Toggle the focused output's scale between 1.0 and 1.5, effectively
+# zooming the display in and back out.
+
+output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name')
+scale=$(swaymsg -t get_outputs | jq -r --arg o "$output" '.[] | select(.name==$o) | .scale')
+
+if awk "BEGIN{exit !($scale > 1.2)}"; then
+    swaymsg output "$output" scale 1
+else
+    swaymsg output "$output" scale 1.5
+fi
