@@ -1,3 +1,4 @@
 sway/.config/local/
+sway/.config/environment.d/10-gpu.conf
 fish/.config/fish/conf.d/
 kitty/.config/kitty/conf.d/
