@@ -34,6 +34,7 @@ else if test "$os_id" = "arch"
     #     end
     # end
     
+    set -gx SWAY_UNSUPPORTED_GPU true
 else
     echo "You are running an unsupported OS: $os_id"
 end
@@ -75,7 +76,7 @@ alias reboot="sudo systemctl reboot"
 alias lsblk="lsblk -lf"
 alias ls="ls -lh --color=auto"
 alias la="ls -lAh --color=auto"
-alias rm="rm -r"
+alias rm="rm -rf"
 alias mkdir="mkdir -pv"
 alias cd="z"
 alias ..="cd .."
@@ -83,6 +84,11 @@ alias 2b="cd ../.."
 alias 3b="cd ../../.."
 alias 4b="cd ../../../../"
 alias 5b="cd ../../../../../"
+
+# Run a command on the NVIDIA dGPU via PRIME render offload, e.g.
+# `nvidia-offload steam` or a per-game Steam launch option:
+# __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only %command%
+alias nvidia-offload="env __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only "
 alias vcpkg="~/vcpkg/vcpkg "
 
 zoxide init fish | source
