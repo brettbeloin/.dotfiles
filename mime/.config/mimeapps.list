@@ -17,3 +17,4 @@ x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 =======
 x-scheme-handler/mailto=brave-browser.desktop
 >>>>>>> 6b9c497 (update)
+x-scheme-handler/postman=Postman.desktop
