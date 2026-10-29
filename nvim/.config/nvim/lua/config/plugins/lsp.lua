@@ -162,6 +162,28 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Web servers use nvim-lspconfig's bundled configs (root detection, eslint's
+-- fix-all/config-detection handlers, etc.) via vim.lsp.enable rather than a
+-- hand-rolled vim.lsp.start, since those defaults are non-trivial.
+lsp.config("html", { capabilities = capabilities })
+lsp.config("cssls", { capabilities = capabilities })
+lsp.config("ts_ls", {
+    capabilities = capabilities,
+    settings = {
+        -- type check plain .js files that have no jsconfig/tsconfig
+        implicitProjectConfiguration = { checkJs = true },
+    },
+})
+lsp.config("emmet_language_server", { capabilities = capabilities })
+lsp.config("eslint", {
+    capabilities = capabilities,
+    settings = {
+        -- show eslint "warn" rules as warnings rather than errors
+        rulesCustomizations = { { rule = "*", severity = "downgrade" } },
+    },
+})
+lsp.enable({ "html", "cssls", "ts_ls", "eslint", "emmet_language_server" })
+
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "*",
     callback = function(args)

@@ -24,6 +24,7 @@ vim.pack.add({
     gh('johnfrankmorgan/whitespace.nvim'),
     gh('github/copilot.vim'),
     gh("windwp/nvim-autopairs"),
+    gh("windwp/nvim-ts-autotag"),
     gh("L3MON4D3/LuaSnip"),
     gh("saadparwaiz1/cmp_luasnip"),
     gh("JoosepAlviste/nvim-ts-context-commentstring"),

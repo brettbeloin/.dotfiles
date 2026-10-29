@@ -116,6 +116,53 @@ dap.configurations.cs = {
     },
 }
 
+-- vscode-js-debug (mason: js-debug-adapter) handles both node and chrome
+for _, adapter in ipairs({ "pwa-node", "pwa-chrome" }) do
+    dap.adapters[adapter] = {
+        type = "server",
+        host = "localhost",
+        port = "${port}",
+        executable = {
+            command = "js-debug-adapter",
+            args = { "${port}" },
+        },
+    }
+end
+-- alias for .vscode/launch.json files using the vscode adapter names
+dap.adapters.node = dap.adapters["pwa-node"]
+dap.adapters.chrome = dap.adapters["pwa-chrome"]
+
+local js_configurations = {
+    {
+        name = "Launch current file (node)",
+        type = "pwa-node",
+        request = "launch",
+        program = "${file}",
+        cwd = "${workspaceFolder}",
+    },
+    {
+        name = "Attach to node process",
+        type = "pwa-node",
+        request = "attach",
+        processId = function()
+            return require("dap.utils").pick_process({ filter = "node" })
+        end,
+        cwd = "${workspaceFolder}",
+    },
+    {
+        name = "Launch Chrome",
+        type = "pwa-chrome",
+        request = "launch",
+        url = function()
+            return vim.fn.input("URL: ", "http://localhost:5173")
+        end,
+        webRoot = "${workspaceFolder}",
+    },
+}
+for _, ft in ipairs({ "javascript", "typescript", "javascriptreact", "typescriptreact" }) do
+    dap.configurations[ft] = js_configurations
+end
+
 dapui.setup()
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
