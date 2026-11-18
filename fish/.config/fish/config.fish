@@ -65,6 +65,7 @@ fish_add_path ~/.local/bin
 fish_add_path /home/linuxbrew/.linuxbrew/bin/lua-language-server
 
 # my custom aliases
+alias sysExplore="sudo ncdu /"
 alias sysEdit='nvim ~/.config/fish/config.fish && source ~/.config/fish/config.fish'
 alias sysRead='cat ~/.config/fish/config.fish'
 alias vim='nvim'
@@ -84,6 +85,7 @@ alias 2b="cd ../.."
 alias 3b="cd ../../.."
 alias 4b="cd ../../../../"
 alias 5b="cd ../../../../../"
+alias open="xdg-open"
 
 # Run a command on the NVIDIA dGPU via PRIME render offload, e.g.
 # `nvidia-offload steam` or a per-game Steam launch option:
