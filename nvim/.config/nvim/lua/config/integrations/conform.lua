@@ -13,7 +13,7 @@ require("conform").setup({
         javascriptreact = { "prettierd", "prettier", stop_after_first = true },
         typescript      = { "prettierd", "prettier", stop_after_first = true },
         typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-        Dockerfile      = { "dockerfmt" },
+        dockerfile      = { "dockerfmt" },
         sh              = { "shfmt" },
         bash            = { "shfmt" },
         zsh             = { "shfmt" },

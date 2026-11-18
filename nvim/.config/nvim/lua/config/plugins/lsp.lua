@@ -28,23 +28,25 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
-lsp.config.docker_language_server = {
-    -- Optional: Specify command if not on PATH
-    cmd = { "docker-language-server", "--stdio" },
-    filetypes = { "dockerfile", "yaml.docker-compose" },
-    root_dir = require('lspconfig').util.root_pattern("Dockerfile", "docker-compose.yaml", "docker-compose.yml",
-        "compose.yaml", "compose.yml"),
-    single_file_support = true,
-}
+-- Neovim detects compose files as plain yaml; give them a compound filetype
+-- so the docker language server can attach while yaml syntax still applies
+vim.filetype.add({
+    filename = {
+        ["docker-compose.yaml"] = "yaml.docker-compose",
+        ["docker-compose.yml"] = "yaml.docker-compose",
+        ["compose.yaml"] = "yaml.docker-compose",
+        ["compose.yml"] = "yaml.docker-compose",
+    },
+})
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "Dockerfile", "docker-compose.yaml", "docker-compose.yml",
-        "compose.yaml", "compose.yml" },
+    pattern = { "dockerfile", "yaml.docker-compose" },
     callback = function()
         vim.lsp.start({
             name = "docker-language-server",
-            cmd = { "docker-language-server", "--stdio" },
-            root_dir = vim.fn.getcwd(),
+            cmd = { "docker-language-server", "start", "--stdio" },
+            root_dir = vim.fs.root(0, { "Dockerfile", "docker-compose.yaml", "docker-compose.yml",
+                "compose.yaml", "compose.yml", ".git" }) or vim.fn.getcwd(),
             capabilities = capabilities,
         })
     end,
