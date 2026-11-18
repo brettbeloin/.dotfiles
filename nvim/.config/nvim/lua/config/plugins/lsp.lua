@@ -2,6 +2,20 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 local lsp = vim.lsp
 
+-- For Neovim 0.11+
+lsp.enable('bashls')
+
+-- Configure to include zsh files
+lsp.config('bashls', {
+    filetypes = { 'sh', 'bash', 'zsh' },
+    settings = {
+        bashIde = {
+            -- Ensure shellcheck runs with zsh compatibility if needed
+            shellcheckArgs = { '--shell=zsh' }
+        }
+    }
+})
+
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "python",
     callback = function()
@@ -9,6 +23,28 @@ vim.api.nvim_create_autocmd("FileType", {
             name = "pyright",
             cmd = { "pyright-langserver", "--stdio" },
             root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", ".git" }),
+            capabilities = capabilities,
+        })
+    end,
+})
+
+lsp.config.docker_language_server = {
+    -- Optional: Specify command if not on PATH
+    cmd = { "docker-language-server", "--stdio" },
+    filetypes = { "dockerfile", "yaml.docker-compose" },
+    root_dir = require('lspconfig').util.root_pattern("Dockerfile", "docker-compose.yaml", "docker-compose.yml",
+        "compose.yaml", "compose.yml"),
+    single_file_support = true,
+}
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "Dockerfile", "docker-compose.yaml", "docker-compose.yml",
+        "compose.yaml", "compose.yml" },
+    callback = function()
+        vim.lsp.start({
+            name = "docker-language-server",
+            cmd = { "docker-language-server", "--stdio" },
+            root_dir = vim.fn.getcwd(),
             capabilities = capabilities,
         })
     end,
@@ -37,18 +73,6 @@ lsp.config.lua_ls = {
 }
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "java",
-    callback = function()
-        vim.lsp.start({
-            name = "jdtls",
-            cmd = { "jdtls" },
-            root_dir = vim.fs.root(0, { "pom.xml", "build.gradle", ".git" }),
-            capabilities = capabilities,
-        })
-    end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
     pattern = "lua",
     callback = function()
         vim.lsp.start({
@@ -60,6 +84,19 @@ vim.api.nvim_create_autocmd("FileType", {
         })
     end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "java",
+    callback = function()
+        vim.lsp.start({
+            name = "jdtls",
+            cmd = { "jdtls" },
+            root_dir = vim.fs.root(0, { "pom.xml", "build.gradle", ".git" }),
+            capabilities = capabilities,
+        })
+    end,
+})
+
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "cmake",
