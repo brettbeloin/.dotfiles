@@ -34,6 +34,7 @@ alias cc++="clang++"
 alias pkgSearch="pacman -Qi"
 alias search="pacman -Ss"
 alias vcpkg="~/vcpkg/vcpkg "
+alias open="xdg-open"
 
 # Toggle the compose project in the current directory: down if running, up otherwise.
 # unalias composeUp 2>/dev/null
