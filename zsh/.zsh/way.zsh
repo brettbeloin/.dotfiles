@@ -29,5 +29,15 @@ way() {
         esac || return 1
     fi
 
-    waypipe ssh "$1@$2"
+    case "$1" in
+    laptop)
+        waypipe --no-gpu ssh brett@192.168.50.43
+        ;;
+    desktop)
+        waypipe --no-gpu ssh brett@192.168.50.23
+        ;;
+    *)
+        waypipe --no-gpu ssh "$1@$2"
+        ;;
+    esac
 }
