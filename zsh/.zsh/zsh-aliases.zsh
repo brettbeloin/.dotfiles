@@ -44,7 +44,7 @@ compose() {
         docker compose down "$@"
     else
         echo "Compose is down — bringing it up..."
-        docker compose up --force-recreate -d "$@"
+        docker compose up --build -d "$@"
     fi
 }
 
