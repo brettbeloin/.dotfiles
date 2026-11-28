@@ -24,6 +24,7 @@ vim.schedule(function()
     require("config.plugins.copilot")
     require("config.plugins.nvim-tree")
     require("config.plugins.dap")
+    require("config.plugins.noice")
     -- integrations
     require("config.integrations.conform")
     require("config.integrations.lint")

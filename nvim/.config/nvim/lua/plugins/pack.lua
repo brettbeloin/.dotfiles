@@ -40,6 +40,9 @@ vim.pack.add({
     gh("mfussenegger/nvim-dap"),
     gh("rcarriga/nvim-dap-ui"),
     gh("nvim-neotest/nvim-nio"),
+    gh("folke/noice.nvim"),
+    gh("MunifTanjim/nui.nvim"),
+    gh("rcarriga/nvim-notify"),
 
     -- gh("tpope/vim-fugitive"),
     -- table imports

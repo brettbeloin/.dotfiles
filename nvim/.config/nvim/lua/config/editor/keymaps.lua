@@ -15,6 +15,7 @@ vim.keymap.set("n", "<leader>so", vim.cmd.so, { desc = "Source current file :so"
 vim.keymap.set('n', '<S-CR>', 'o<Esc>', { desc = "Insert line below" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "LSP Rename" })
 vim.keymap.set('n', '<leader>ef', ':NvimTreeToggle<CR>', { desc = "Toggle nvim-tree" })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlights" })
 
 -- Movement Keys
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
